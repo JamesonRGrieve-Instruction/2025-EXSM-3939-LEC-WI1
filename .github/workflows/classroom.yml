@@ -32,7 +32,7 @@ jobs:
 
       - name: Check build artifacts
         run: |
-          if [ ! -d "dist" ] && [ ! -d "build" ]; then
-            echo "No build output directory found. Expected 'dist' or 'build'."
+          if [ ! -d "dist" ] && [ ! -d "build" ] && [ ! -d ".next" ]; then
+            echo "No build output directory found. Expected 'dist', 'build' or '.next'."
             exit 1
           fi
