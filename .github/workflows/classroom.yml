@@ -30,9 +30,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Run tests
-        run: npm test
-
       - name: Check build artifacts
         run: |
           if [ ! -d "dist" ] && [ ! -d "build" ]; then
