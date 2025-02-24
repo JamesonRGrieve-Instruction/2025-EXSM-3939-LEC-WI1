@@ -30,13 +30,16 @@
   "include": [
     "next-env.d.ts",
     "next.config.js.old",
+    "src/**/*.js",
+    "src/**/*.jsx",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/theme.ts",
     "components/jrg/auth/auth.config.js",
     "components/interactive/interactive.config.js",
-    "components/interactive/Chat/Activity/Severtities.tsx"
+    "components/interactive/Chat/Activity/Severtities.tsx",
+    "src/components/**/*.stories.js"
   ],
   "exclude": ["node_modules"]
 }
