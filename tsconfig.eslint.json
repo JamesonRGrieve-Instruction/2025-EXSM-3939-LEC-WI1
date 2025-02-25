@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "next-env.d.ts",
+    "next.config.js.old",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.stories.js",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "app/theme.ts",
+    "components/jrg/auth/auth.config.js",
+    "components/interactive/interactive.config.js",
+    "components/interactive/Chat/Activity/Severtities.tsx",
+    ".eslintrc.js"
+  ],
+  "exclude": ["node_modules"]
+}
