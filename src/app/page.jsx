@@ -1,4 +1,9 @@
-import React from 'react';
+import HelloWorld from '../components/stateless/HelloWorld';
+
 export default function Home() {
-  return <main></main>;
+  return (
+    <main>
+      <HelloWorld />
+    </main>
+  );
 }
