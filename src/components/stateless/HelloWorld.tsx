@@ -1,4 +1,4 @@
-export default function ({ firstName, lastName }) {
+export default function HelloWorld({ firstName, lastName }: { firstName: string; lastName: string }) {
   return (
     <>
       <h1>Hello World</h1>
