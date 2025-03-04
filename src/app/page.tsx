@@ -5,7 +5,7 @@ import HelloWorld from '../components/stateful/HelloWorld';
 export default function Home(): JSX.Element {
   const [showHelloWorld, setShowHelloWorld] = useState<Boolean>(false);
   const handleToggleHelloWorld = useCallback(() => {
-    setShowHelloWorld(!showHelloWorld);
+    setShowHelloWorld((old) => !old);
   }, [showHelloWorld]);
   return (
     <main>
