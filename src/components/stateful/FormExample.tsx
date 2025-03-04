@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 
 type FormField = {
-  value: string | number;
-  validation: (value: string | number) => boolean;
+  value: string;
+  validation: (value: string) => boolean;
 };
 export default function FormExample() {
   const [formState, setFormState] = useState<{
@@ -21,8 +21,8 @@ export default function FormExample() {
       validation: (value: string) => value.length > 0,
     },
     age: {
-      value: 0,
-      validation: (value: number) => value > 0,
+      value: '0',
+      validation: (value: string) => Number(value) > 0,
     },
   });
 
