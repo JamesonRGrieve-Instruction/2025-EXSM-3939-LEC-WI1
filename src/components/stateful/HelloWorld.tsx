@@ -10,8 +10,18 @@ export type HelloWorldProps = {
 export default function HelloWorld(props: HelloWorldProps | any) {
   const [updatedFirstName, setUpdatedFirstName] = useState<string>(props.firstName);
   useEffect(() => {
+    // Runs when the first name prop changes (and on initial mount).
+    console.log('First Name Prop Updated');
     setUpdatedFirstName(props.firstName);
   }, [props.firstName]);
+  useEffect(() => {
+    // Runs when the component mounts.
+    console.log('Hello World Mounted');
+    return () => {
+      // Runs when the component unmounts.
+      console.log('Hello World Unmounted');
+    };
+  }, []);
   return (
     <>
       <h1>Hello World</h1>
