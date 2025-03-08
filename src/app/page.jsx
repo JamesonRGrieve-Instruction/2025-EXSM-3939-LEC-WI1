@@ -1,10 +1,12 @@
+import ClickMe from '../components/stateless/ClickMe';
 import HelloWorld from '../components/stateless/HelloWorld';
 
 export default function Home() {
   return (
     <main>
-      <HelloWorld firstName='Jane' lastName='Doe' />
-      <HelloWorld firstName='John' lastName='Doe' />
+      <p>Hello, my name is James, and this is my first react page!</p>
+      <HelloWorld />
+      <ClickMe />
     </main>
   );
 }

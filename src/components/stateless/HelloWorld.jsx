@@ -1,10 +1,3 @@
-export default function ({ firstName, lastName }) {
-  return (
-    <>
-      <h1>Hello World</h1>
-      <p>
-        Welcome to the application, {firstName} {lastName}!
-      </p>
-    </>
-  );
+export default function () {
+  return <p>Hello, World from the HelloWorld component.</p>;
 }
