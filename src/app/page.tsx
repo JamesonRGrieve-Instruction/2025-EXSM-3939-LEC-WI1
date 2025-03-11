@@ -42,30 +42,25 @@ export default function Home(): JSX.Element {
           // If it's a match...
           setCards((currentCards) => {
             return currentCards.map((card) => ({
-              image: card.image, // Image always the same.
+              ...card,
               matched: card.matched || card.image === image.image, // Set matched to true if it's a match, keep if already matched
               visible: false, // Hide all cards (doesn't affect matched cards due to conditional render)
-              instance: card.instance, // Instance always the same
             }));
           });
         } else {
           // If it's not a match...
           setCards((currentCards) => {
             return currentCards.map((card) => ({
-              image: card.image, // Image always the same.
-              matched: card.matched, // Keep if already matched
+              ...card,
               visible: card.visible || (card.image === image.image && card.instance === image.instance), // Keep the previous click visible, show this click.
-              instance: card.instance, // Instance always the same
             }));
           });
           // Hide cards after 2 seconds.
           setTimeout(() => {
             setCards((currentCards) => {
               return currentCards.map((card) => ({
-                image: card.image, // Image always the same.
-                matched: card.matched, // Keep if already matched
+                ...card,
                 visible: false, // Hide all cards (doesn't affect matched cards due to conditional render)
-                instance: card.instance, // Instance always the same
               }));
             });
           }, 2000);
@@ -77,10 +72,8 @@ export default function Home(): JSX.Element {
         setPreviousClick(image.image);
         setCards((currentCards) => {
           return currentCards.map((card) => ({
-            image: card.image, // Image always the same.
-            matched: card.matched, // Keep if already matched
+            ...card,
             visible: card.image === image.image && card.instance === image.instance, // Show this click
-            instance: card.instance, // Instance always the same
           }));
         });
       }
