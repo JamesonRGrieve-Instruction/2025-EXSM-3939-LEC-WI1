@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { ReactNode, RefObject, useEffect, useState } from 'react';
 
 type FormField = {
   value: string;
   validation: (value: string) => boolean;
 };
-export default function FormExample() {
+export default function FormExample({ scrollTo }: { scrollTo: RefObject<ReactNode> }) {
   const [formState, setFormState] = useState<{
     firstName: FormField;
     lastName: FormField;
@@ -35,7 +35,13 @@ export default function FormExample() {
   //   const [age, setAge] = useState<number>(0);
 
   return (
-    <form>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        console.log('Submit!');
+        scrollTo.current?.scrollIntoView({ behavior: 'smooth' });
+      }}
+    >
       <input
         type='text'
         value={formState.firstName.value}
@@ -78,6 +84,7 @@ export default function FormExample() {
         }
       />
       {!formState.age.validation(formState.age.value) && <p>Age must be greater than zero.</p>}
+      <button type='submit'>Submit</button>
     </form>
   );
 }
