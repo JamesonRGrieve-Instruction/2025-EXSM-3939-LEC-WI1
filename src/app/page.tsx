@@ -39,44 +39,48 @@ export default function Home(): JSX.Element {
       if (previousClick) {
         console.log('Second Click');
         if (previousClick === image.image) {
+          // If it's a match...
           setCards((currentCards) => {
             return currentCards.map((card) => ({
-              image: card.image,
-              matched: card.matched || card.image === image.image,
-              visible: false,
-              instance: card.instance,
+              image: card.image, // Image always the same.
+              matched: card.matched || card.image === image.image, // Set matched to true if it's a match, keep if already matched
+              visible: false, // Hide all cards (doesn't affect matched cards due to conditional render)
+              instance: card.instance, // Instance always the same
             }));
           });
         } else {
+          // If it's not a match...
           setCards((currentCards) => {
             return currentCards.map((card) => ({
-              image: card.image,
-              matched: card.matched,
-              visible: card.visible || (card.image === image.image && card.instance === image.instance),
-              instance: card.instance,
+              image: card.image, // Image always the same.
+              matched: card.matched, // Keep if already matched
+              visible: card.visible || (card.image === image.image && card.instance === image.instance), // Keep the previous click visible, show this click.
+              instance: card.instance, // Instance always the same
             }));
           });
+          // Hide cards after 2 seconds.
           setTimeout(() => {
             setCards((currentCards) => {
               return currentCards.map((card) => ({
-                image: card.image,
-                matched: card.matched,
-                visible: false,
-                instance: card.instance,
+                image: card.image, // Image always the same.
+                matched: card.matched, // Keep if already matched
+                visible: false, // Hide all cards (doesn't affect matched cards due to conditional render)
+                instance: card.instance, // Instance always the same
               }));
             });
           }, 2000);
         }
         setPreviousClick(null);
       } else {
+        // If it's the first click...
         console.log('First Click');
         setPreviousClick(image.image);
         setCards((currentCards) => {
           return currentCards.map((card) => ({
-            image: card.image,
-            matched: card.matched,
-            visible: card.image === image.image && card.instance === image.instance,
-            instance: card.instance,
+            image: card.image, // Image always the same.
+            matched: card.matched, // Keep if already matched
+            visible: card.image === image.image && card.instance === image.instance, // Show this click
+            instance: card.instance, // Instance always the same
           }));
         });
       }
