@@ -1,5 +1,6 @@
 'use client';
 import { JSX, useCallback, useRef, useState } from 'react';
+import useSampleContext from '../components/context/SampleContext';
 import FormExample from '../components/stateful/FormExample';
 import HelloWorld from '../components/stateful/HelloWorld';
 
@@ -9,6 +10,7 @@ export default function Home(): JSX.Element {
     setShowHelloWorld((old) => !old);
   }, [showHelloWorld]);
   const toggleButton = useRef(null);
+  const sampleContext = useSampleContext();
   return (
     <main>
       <a href='#' ref={toggleButton} onClick={handleToggleHelloWorld}>
@@ -20,7 +22,7 @@ export default function Home(): JSX.Element {
           vitae iusto fugit possimus. Perspiciatis.
         </p>
       ))}
-      {showHelloWorld && <HelloWorld firstName='Jane' lastName='Doe' middleName='Test' age='10' height='195cm' />}
+      {showHelloWorld && <HelloWorld firstName={sampleContext.state.firstName} lastName={sampleContext.state.lastName} middleName='Test' age='10' height='195cm' />}
       <FormExample scrollTo={toggleButton} />
     </main>
   );
