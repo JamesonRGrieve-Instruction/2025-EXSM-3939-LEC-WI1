@@ -1,6 +1,6 @@
 'use client';
 import { useCallback, useState } from 'react';
-import CountTracker from '../components/CountTracker';
+import Greeter from '../components/Greeter';
 export default function Home() {
   const [shown, setShown] = useState(false);
   const toggle = useCallback(() => {
@@ -8,8 +8,7 @@ export default function Home() {
   }, [shown]);
   return (
     <main className='container flex justify-between'>
-      <button onClick={toggle}>Toggle</button>
-      {shown && <CountTracker />}
+      <Greeter name='Bob' profession='Doctor' age='127' />
     </main>
   );
 }
