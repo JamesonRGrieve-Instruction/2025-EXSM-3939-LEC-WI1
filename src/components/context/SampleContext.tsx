@@ -5,8 +5,8 @@ export type SampleContext = SampleContextItem[];
 export type SampleContextHook = { state: SampleContext; mutate: any; addItem: any };
 const initialState: SampleContext = [];
 // Provider
-export function SampleContextProvider({ children }: { children: React.ReactNode }) {
-  const [contextState, setContextState] = useState<SampleContext>(initialState);
+export function SampleContextProvider({ defaultValue = undefined, children }: { defaultValue?: SampleContext; children: React.ReactNode }) {
+  const [contextState, setContextState] = useState<SampleContext>(defaultValue || initialState);
   const handleAddItem = useCallback(
     (itemCode: string) => {
       setContextState((old: SampleContext) => {

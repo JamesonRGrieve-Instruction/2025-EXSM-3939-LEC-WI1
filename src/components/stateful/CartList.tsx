@@ -2,6 +2,8 @@
 
 import useSampleContext from '../context/SampleContext';
 
+export type CartListProps = {};
+
 export default function CartList() {
   const sampleContext = useSampleContext();
 
