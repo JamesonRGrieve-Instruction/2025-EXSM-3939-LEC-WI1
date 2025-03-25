@@ -41,7 +41,7 @@ jobs:
       #   continue-on-error: true
 
       # Upload artifacts if tests fail
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: storybook-test-results
