@@ -1,11 +1,15 @@
 'use client';
-import { createContext, useContext, useState } from 'react';
-export type SampleContext = { firstName: string; lastName: string };
+import { createContext, useContext, useEffect, useState } from 'react';
+export type SampleContextItem = { itemID: string; quantity: number };
+export type SampleContext = SampleContextItem[];
 export type SampleContextHook = { state: SampleContext; mutate: any };
-const initialState: SampleContext = { firstName: 'John', lastName: 'Doe' };
+const initialState: SampleContext = [];
 // Provider
 export function SampleContextProvider({ children }: { children: React.ReactNode }) {
   const [contextState, setContextState] = useState<SampleContext>(initialState);
+  useEffect(() => {
+    console.log(contextState);
+  }, [contextState]);
   return <SampleContext.Provider value={{ state: contextState, mutate: setContextState }}>{children}</SampleContext.Provider>;
 }
 // Context
