@@ -32,7 +32,7 @@ jobs:
         run: npm run storybook-build
 
       - name: Run Storybook tests
-        run: npm run test-storybook
+        run: npm run storybook-test
 
       # Optional: Collect and upload test coverage
       # - name: Collect coverage
