@@ -10,16 +10,15 @@ import CartListComponent, { CartListProps } from './CartList';
 interface CartListStoryArgs {
   contextState?: SampleContext;
   containerStyles: string;
+  handleButtonOption?: 'action' | 'console'; // Add this to our interface
 }
 
-const meta: Meta<CartListProps> = {
+const meta: Meta<CartListProps & CartListStoryArgs> = {
   title: 'Context/CartList',
   component: CartListComponent,
   decorators: [
     (Story, context: StoryContext) => {
-      // Extract the context state from args
       const contextState = context.args.contextState || [];
-
       return (
         <SampleContextProvider defaultValue={contextState as SampleContext}>
           <Story />
@@ -27,6 +26,40 @@ const meta: Meta<CartListProps> = {
       );
     },
   ],
+  argTypes: {
+    buttonText: {
+      control: 'select',
+      options: ['Click Me!', 'Add to Cart', 'Submit', 'Continue', 'Hurray!'],
+      table: {
+        disable: false,
+        category: 'Text Options',
+      },
+    },
+    // For handleButton, let's try a different approach
+    handleButtonOption: {
+      control: 'radio',
+      options: ['action', 'console'],
+      description: 'Select the type of button handler',
+      table: {
+        disable: false,
+        category: 'Button Behavior',
+      },
+    },
+    // Hide the actual handleButton prop from the controls
+    handleButton: {
+      table: { disable: true },
+    },
+    containerStyles: {
+      control: 'text',
+      table: {
+        disable: false,
+        category: 'Styling',
+      },
+    },
+    contextState: {
+      table: { disable: false },
+    },
+  },
 };
 
 export default meta;
@@ -36,22 +69,32 @@ type Story = StoryObj<CartListStoryArgs & CartListProps>;
 export const Default: Story = {
   args: {
     buttonText: 'Click Me!',
-    handleButton: action('Button Click!') as MouseEventHandler,
+    handleButtonOption: 'action',
     containerStyles: 'container',
     contextState: [
-      {
-        itemID: 'PEN101',
-        quantity: 5,
-      },
-      {
-        itemID: 'PENCIL101',
-        quantity: 3,
-      },
+      { itemID: 'PEN101', quantity: 5 },
+      { itemID: 'PENCIL101', quantity: 3 },
     ],
+  },
+  // Use render to dynamically set the handleButton based on the selected option
+  render: (args) => {
+    let handleButton;
+
+    if (args.handleButtonOption === 'console') {
+      handleButton = (() => {
+        console.log('Button clicked via console!');
+      }) as MouseEventHandler;
+    } else {
+      handleButton = action('Button clicked via action!') as MouseEventHandler;
+    }
+
+    // Remove handleButtonOption from the props we pass to the component
+    const { handleButtonOption, ...componentProps } = args;
+
+    return <CartListComponent {...componentProps} handleButton={handleButton} />;
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
-
     const items = canvas.getAllByRole('listitem');
     expect(items[0]).toHaveTextContent('PEN101: 5');
     expect(items[1]).toHaveTextContent('PENCIL101: 3');
