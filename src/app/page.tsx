@@ -1,7 +1,7 @@
 'use client';
 import { JSX } from 'react';
+import Greeter from '../components/Greeter';
 import useSampleContext from '../components/context/SampleContext';
-import CartList from '../components/stateful/CartList';
 
 export default function Home(): JSX.Element {
   const sampleContext = useSampleContext();
@@ -12,7 +12,7 @@ export default function Home(): JSX.Element {
         <button onClick={() => sampleContext.addItem('PENCIL101')}>Add Pencil to Cart</button>
       </main>
       <aside>
-        <CartList />
+        <Greeter />
       </aside>
     </>
   );
