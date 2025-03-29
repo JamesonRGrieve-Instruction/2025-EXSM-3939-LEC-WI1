@@ -1,4 +1,4 @@
-import { SampleContextProvider } from '../components/context/SampleContext';
+import { CartContextProvider } from '../components/context/SampleContext';
 import './globals.css';
 export const metadata = {
   title: 'UAlberta FullStack',
@@ -9,9 +9,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body>
-        <SampleContextProvider>
+        <CartContextProvider>
           <div className='container'>{children}</div>
-        </SampleContextProvider>
+        </CartContextProvider>
       </body>
     </html>
   );
