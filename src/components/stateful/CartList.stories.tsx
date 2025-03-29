@@ -1,37 +1,43 @@
 import Home from '@/src/app/page';
+import { action } from '@storybook/addon-actions';
 import { Meta, StoryContext, StoryObj } from '@storybook/react';
 import { expect, userEvent, within } from '@storybook/test';
+import { MouseEventHandler } from 'react';
 import { SampleContext, SampleContextProvider } from '../context/SampleContext';
-import { default as CartListComponent } from './CartList';
+import CartListComponent, { CartListProps } from './CartList';
 
-type CartListStoryArgs = {
-  contextState: SampleContext;
-  containerStyles?: string;
-  props?: Record<string, unknown>;
-};
+// Extended args interface that includes contextState for stories
+interface CartListStoryArgs {
+  contextState?: SampleContext;
+  containerStyles: string;
+}
 
-const meta: Meta<typeof CartListComponent> = {
+const meta: Meta<CartListProps> = {
   title: 'Context/CartList',
   component: CartListComponent,
   decorators: [
-    (Story, context: StoryContext) => (
-      <SampleContextProvider defaultValue={context.args.contextState as SampleContext}>
-        <Story />
-      </SampleContextProvider>
-    ),
+    (Story, context: StoryContext) => {
+      // Extract the context state from args
+      const contextState = context.args.contextState || [];
+
+      return (
+        <SampleContextProvider defaultValue={contextState as SampleContext}>
+          <Story />
+        </SampleContextProvider>
+      );
+    },
   ],
 };
+
 export default meta;
-type Story = StoryObj<typeof CartListComponent>;
+type Story = StoryObj<CartListStoryArgs & CartListProps>;
 
-// Named export for each story
-// export const CartList = (args: { contextState: SampleContext; props: CartListProps; containerStyles?: string }) => (
-
-// );
-
-// Default values for props
+// Default story
 export const Default: Story = {
   args: {
+    buttonText: 'Click Me!',
+    handleButton: action('Button Click!') as MouseEventHandler,
+    containerStyles: 'container',
     contextState: [
       {
         itemID: 'PEN101',
@@ -42,8 +48,6 @@ export const Default: Story = {
         quantity: 3,
       },
     ],
-    containerStyles: 'container',
-    props: {},
   },
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);

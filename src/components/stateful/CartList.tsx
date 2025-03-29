@@ -1,10 +1,11 @@
 'use client';
 
+import { MouseEventHandler } from 'react';
 import useSampleContext from '../context/SampleContext';
 
-export type CartListProps = undefined;
+export type CartListProps = { handleButton: MouseEventHandler; buttonText: string };
 
-export default function CartList() {
+export default function CartList({ handleButton, buttonText }: CartListProps) {
   const sampleContext = useSampleContext();
 
   return (
@@ -14,6 +15,7 @@ export default function CartList() {
           {item.itemID}: {item.quantity}
         </li>
       ))}
+      <button onClick={handleButton}>{buttonText}</button>
     </ul>
   );
 }
