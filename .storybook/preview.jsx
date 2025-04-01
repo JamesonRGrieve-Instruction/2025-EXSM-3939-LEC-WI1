@@ -1,6 +1,6 @@
+import { Controls, Description, Primary, Stories, Subtitle, Title } from '@storybook/blocks';
 import React from 'react';
-import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/blocks';
-
+import '../src/app/globals.css';
 const preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },

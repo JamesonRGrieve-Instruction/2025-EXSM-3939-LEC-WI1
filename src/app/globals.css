@@ -1,8 +1,8 @@
 @import 'tailwindcss';
-
 @plugin 'tailwindcss-animate';
-
 @custom-variant dark (&:is(.dark *));
+@import 'tailwindcss/preflight';
+@tailwind utilities;
 
 @theme {
   --color-border: hsl(var(--border));
@@ -72,17 +72,6 @@
     to {
       height: 0;
     }
-  }
-}
-
-@utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
-  @media (width >= --theme(--breakpoint-sm)) {
-    max-width: none;
-  }
-  @media (width >= 1400px) {
-    max-width: 1400px;
   }
 }
 
