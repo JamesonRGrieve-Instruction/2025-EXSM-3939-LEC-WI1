@@ -1,4 +1,3 @@
-// Default export with title
 // import { Progress } from '@radix-ui/react-progress';
 import { Progress } from '@/components/ui/Progress';
 export default {
@@ -13,9 +12,9 @@ type ArgsType = {
   value: number;
 };
 
-// Named export for each story
+// Replace hardcoded background color with theme-aware class
 export const Sample = (args: ArgsType) => (
-  <div className='w-full h-12 bg-slate-300'>
+  <div className='w-full h-12 bg-background'>
     <Progress value={args.value} />
   </div>
 );

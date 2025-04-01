@@ -1,7 +1,5 @@
-// Default export with title
 // import { Select, SelectContent, SelectItem, SelectTrigger } from '@radix-ui/react-select';
-// import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/Select';
-import { Box, Container, Select, Theme } from '@radix-ui/themes';
+import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/Select';
 export default {
   title: 'ShadCN/Radix/Select',
   component: Select,
@@ -12,30 +10,24 @@ export default {
 
 type ArgsType = {
   value: number;
-  theme: string;
+  // Remove theme from args type
 };
 
-// Named export for each story
 export const Sample = (args: ArgsType) => (
-  <Theme accentColor='blue' grayColor='slate' radius='large' scaling='90%'>
-    <Container className={args.theme}>
-      <Box className='light w-full h-12 bg-background'>
-        <Select.Root defaultValue='Test1'>
-          <Select.Trigger />
-          <Select.Content>
-            <Select.Group>
-              <Select.Item value={'Test1'}>Test Item 1</Select.Item>
-              <Select.Item value={'Test2'}>Test Item 2</Select.Item>
-            </Select.Group>
-          </Select.Content>
-        </Select.Root>
-      </Box>
-    </Container>
-  </Theme>
+  <main>
+    {/* Remove the 'light' class so it doesn't override the theme */}
+    <div className='w-full h-12 bg-background'>
+      <Select>
+        <SelectTrigger className='w-48'>Select an Option</SelectTrigger>
+        <SelectContent>
+          <SelectItem value={'Test'}>Test Item</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  </main>
 );
 
-// Default values for props
+// Default values for props - remove theme
 Sample.args = {
   value: 40,
-  theme: 'dark',
 } as ArgsType;
