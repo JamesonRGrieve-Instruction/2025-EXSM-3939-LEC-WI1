@@ -21,10 +21,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
-      "@/jrg/*": ["./components/jrg/*"],
-      "@/auth/*": ["./components/jrg/auth/*"],
-      "@/interactive/*": ["./components/interactive/*"]
+      "@/*": ["./src/*"],
     }
   },
   "include": [

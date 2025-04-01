@@ -1,7 +1,7 @@
 @import 'tailwindcss';
-@plugin 'tailwindcss-animate';
-@custom-variant dark (&:is(.dark *));
 @import 'tailwindcss/preflight';
+@tailwind base;
+@tailwind components;
 @tailwind utilities;
 
 @theme {
