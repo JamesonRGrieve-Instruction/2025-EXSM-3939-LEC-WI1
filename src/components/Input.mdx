@@ -1,0 +1,14 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Components/Input/Documentation" />
+
+# Docs for Input
+
+Input is a form control component that includes validation feedback when the input value doesn't meet requirements.
+
+It expects the following props:
+- `value`: String representing the current input value
+- `onChange`: ChangeEventHandler that's triggered when the input value changes
+- `validate`: Function that takes the input value and returns a boolean indicating validity
+
+When the validation function returns false, an error message is displayed below the input field.
